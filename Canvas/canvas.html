@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+    <script>
+      function draw() {
+        var canvas = document.getElementById("example");
+        if (canvas.getContext) {
+          var ctx = canvas.getContext("2d");
+          ctx.fillStyle = "rgb(0,255,0)";
+          ctx.fillRect (10, 10, 220, 220);
+
+          ctx.fillStyle = "rgba(255,0,255,0.5)";
+          ctx.beginPath();
+          ctx.arc(175,120,75,0,Math.PI*2 );
+          ctx.closePath();
+          ctx.fill();
+
+          var piano = new Image();
+          piano.src = "piano.jpg";
+          piano.onload = function() {
+            ctx.drawImage(piano, 30, 30);
+            ctx.drawImage(piano, 100, 130, 70, 70);
+          }
+          ctx.shadowOffsetX = 0;
+          ctx.shadowOffsetY = 5;
+          ctx.shadowBlur = 30;
+          ctx.shadowColor = "#000";
+        }
+      }
+    </script>
+</head>
+<body onload="draw();">
+    <canvas id="example" width="250" height="250" alt="Piano picture goes here.">
+    This is my canvas.
+    </canvas>
+</body>
+</html>
